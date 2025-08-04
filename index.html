@@ -279,7 +279,7 @@
             gap: 20px;
         }
 
-        .book-mode-switch, .student-mode-switch {
+        .book-mode-switch {
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
@@ -306,11 +306,11 @@
             color: white;
         }
 
-        .bulk-section {
+        .bulk-book-section {
             display: none;
         }
 
-        .bulk-section.active {
+        .bulk-book-section.active {
             display: block;
         }
 
@@ -373,45 +373,6 @@
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 20px;
-        }
-
-        .borrow-search-section {
-            background: #f7fafc;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
-        .search-results {
-            max-height: 300px;
-            overflow-y: auto;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            background: white;
-            margin-top: 10px;
-        }
-
-        .search-result-item {
-            padding: 15px;
-            border-bottom: 1px solid #e2e8f0;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-
-        .search-result-item:hover {
-            background-color: #f7fafc;
-        }
-
-        .search-result-item:last-child {
-            border-bottom: none;
-        }
-
-        .selected-item {
-            background: #e6fffa;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border: 2px solid #38b2ac;
         }
 
         @media (max-width: 768px) {
@@ -549,7 +510,7 @@
             </div>
 
             <!-- Bulk Book Form -->
-            <div id="bulkBookSection" class="bulk-section">
+            <div id="bulkBookSection" class="bulk-book-section">
                 <h2>Add Books in Bulk</h2>
                 <p style="color: #718096; margin-bottom: 15px;">
                     Enter multiple books, one per line in the format: <strong>Title | Author | ISBN | Category</strong>
@@ -563,7 +524,7 @@ To Kill a Mockingbird | Harper Lee | 978-0-06-112008-4 | Fiction
 1984 | George Orwell | 978-0-452-28423-4 | Fiction" required></textarea>
                     </div>
                     <button type="submit" class="btn">Add All Books</button>
-                    <button type="button" class="btn btn-secondary" onclick="clearBulkBookData()">Clear</button>
+                    <button type="button" class="btn btn-secondary" onclick="clearBulkData()">Clear</button>
                 </form>
             </div>
 
@@ -576,93 +537,67 @@ To Kill a Mockingbird | Harper Lee | 978-0-06-112008-4 | Fiction
         </div>
 
         <div id="students" class="tab-content">
-            <!-- Student Mode Switch -->
-            <div class="student-mode-switch">
-                <div class="mode-btn active" onclick="switchStudentMode('single')">👤 Add Single Student</div>
-                <div class="mode-btn" onclick="switchStudentMode('bulk')">👥 Add Students in Bulk</div>
-            </div>
-
-            <!-- Single Student Form -->
-            <div id="singleStudentSection">
-                <h2>Add New Student</h2>
-                <form id="studentForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="studentName">Student Name</label>
-                            <input type="text" id="studentName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="studentGrade">Grade</label>
-                            <select id="studentGrade" required>
-                                <option value="">Select Grade</option>
-                                <option value="6">Grade 6</option>
-                                <option value="7">Grade 7</option>
-                                <option value="8">Grade 8</option>
-                                <option value="9">Grade 9</option>
-                                <option value="10">Grade 10</option>
-                                <option value="11">Grade 11</option>
-                                <option value="12">Grade 12</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn">Add Student</button>
-                </form>
-            </div>
-
-            <!-- Bulk Student Form -->
-            <div id="bulkStudentSection" class="bulk-section">
-                <h2>Add Students in Bulk</h2>
-                <p style="color: #718096; margin-bottom: 15px;">
-                    Enter multiple students, one per line in the format: <strong>Name | Grade</strong>
-                </p>
-                <form id="bulkStudentForm">
+            <h2>Add New Student</h2>
+            <form id="studentForm">
+                <div class="form-row">
                     <div class="form-group">
-                        <label for="bulkStudentData">Student Data (one student per line)</label>
-                        <textarea id="bulkStudentData" placeholder="Example:
-John Smith | 10
-Sarah Johnson | 11
-Michael Brown | 9
-Emma Davis | 12" required></textarea>
+                        <label for="studentName">Student Name</label>
+                        <input type="text" id="studentName" required>
                     </div>
-                    <button type="submit" class="btn">Add All Students</button>
-                    <button type="button" class="btn btn-secondary" onclick="clearBulkStudentData()">Clear</button>
-                </form>
-            </div>
+                    <div class="form-group">
+                        <label for="studentId">Student ID</label>
+                        <input type="text" id="studentId" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="studentEmail">Email</label>
+                        <input type="email" id="studentEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentGrade">Grade</label>
+                        <select id="studentGrade" required>
+                            <option value="">Select Grade</option>
+                            <option value="6">Grade 6</option>
+                            <option value="7">Grade 7</option>
+                            <option value="8">Grade 8</option>
+                            <option value="9">Grade 9</option>
+                            <option value="10">Grade 10</option>
+                            <option value="11">Grade 11</option>
+                            <option value="12">Grade 12</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Add Student</button>
+            </form>
 
             <h2>Student List</h2>
             <div class="search-bar">
                 <span class="search-icon">🔍</span>
-                <input type="text" id="studentSearch" placeholder="Search students by name...">
+                <input type="text" id="studentSearch" placeholder="Search students by name or ID...">
             </div>
             <div id="studentList" class="grid"></div>
         </div>
 
         <div id="borrow" class="tab-content">
             <h2>Borrow Book</h2>
-            
-            <!-- Student Search -->
-            <div class="borrow-search-section">
-                <h3>👤 Select Student</h3>
-                <div class="search-bar">
-                    <span class="search-icon">🔍</span>
-                    <input type="text" id="studentSearchBorrow" placeholder="Search students by name...">
+            <form id="borrowForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="borrowStudent">Select Student</label>
+                        <select id="borrowStudent" required>
+                            <option value="">Select Student</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="borrowBook">Select Book</label>
+                        <select id="borrowBook" required>
+                            <option value="">Select Book</option>
+                        </select>
+                    </div>
                 </div>
-                <div id="studentSearchResults" class="search-results" style="display: none;"></div>
-                <div id="selectedStudent" class="selected-item" style="display: none;"></div>
-            </div>
-
-            <!-- Book Search -->
-            <div class="borrow-search-section">
-                <h3>📚 Select Book</h3>
-                <div class="search-bar">
-                    <span class="search-icon">🔍</span>
-                    <input type="text" id="bookSearchBorrow" placeholder="Search available books by title or author...">
-                </div>
-                <div id="bookSearchResults" class="search-results" style="display: none;"></div>
-                <div id="selectedBook" class="selected-item" style="display: none;"></div>
-            </div>
-
-            <button id="borrowBtn" class="btn" onclick="borrowBook()" disabled>Borrow Book</button>
+                <button type="submit" class="btn">Borrow Book</button>
+            </form>
 
             <h2>Return Book</h2>
             
@@ -675,6 +610,17 @@ Emma Davis | 12" required></textarea>
                 </div>
                 <div id="returnSearchResults" class="grid" style="margin-top: 15px;"></div>
             </div>
+
+            <!-- Traditional Return Form -->
+            <form id="returnForm">
+                <div class="form-group">
+                    <label for="returnTransaction">Or Select from Dropdown</label>
+                    <select id="returnTransaction" required>
+                        <option value="">Select borrowed book to return</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Return Book</button>
+            </form>
 
             <h2>Active Borrowings</h2>
             <div id="borrowingList" class="grid"></div>
@@ -689,10 +635,6 @@ Emma Davis | 12" required></textarea>
         let categories = JSON.parse(localStorage.getItem('libraryCategories')) || [
             'Fiction', 'Non-Fiction', 'Science', 'History', 'Biography', 'Reference'
         ];
-
-        // Borrow form state
-        let selectedStudentForBorrow = null;
-        let selectedBookForBorrow = null;
 
         // Save data to localStorage
         function saveData() {
@@ -731,36 +673,16 @@ Emma Davis | 12" required></textarea>
                 updateCategoryDropdown();
             }
             if (tabName === 'students') displayStudents();
-            if (tabName === 'borrow') {
-                displayBorrowings();
-                clearBorrowSelections();
-            }
+            if (tabName === 'borrow') updateBorrowForm();
         }
 
         // Book mode switching
         function switchBookMode(mode) {
-            document.querySelectorAll('.book-mode-switch .mode-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
             
             const singleSection = document.getElementById('singleBookSection');
             const bulkSection = document.getElementById('bulkBookSection');
-            
-            if (mode === 'single') {
-                singleSection.style.display = 'block';
-                bulkSection.classList.remove('active');
-            } else {
-                singleSection.style.display = 'none';
-                bulkSection.classList.add('active');
-            }
-        }
-
-        // Student mode switching
-        function switchStudentMode(mode) {
-            document.querySelectorAll('.student-mode-switch .mode-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            const singleSection = document.getElementById('singleStudentSection');
-            const bulkSection = document.getElementById('bulkStudentSection');
             
             if (mode === 'single') {
                 singleSection.style.display = 'block';
@@ -820,37 +742,10 @@ Emma Davis | 12" required></textarea>
                 categories.map(category => `<option value="${category}">${category}</option>`).join('');
         }
 
-        // Bulk functions
-        function clearBulkBookData() {
+        // Bulk book functions
+        function clearBulkData() {
             document.getElementById('bulkBookData').value = '';
         }
-
-        function clearBulkStudentData() {
-            document.getElementById('bulkStudentData').value = '';
-        }
-
-        // Book management
-        document.getElementById('bookForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const book = {
-                id: Date.now(),
-                title: document.getElementById('bookTitle').value,
-                author: document.getElementById('bookAuthor').value,
-                isbn: document.getElementById('bookISBN').value,
-                category: document.getElementById('bookCategory').value,
-                available: true,
-                borrowedBy: null,
-                borrowedDate: null
-            };
-            
-            books.push(book);
-            saveData();
-            this.reset();
-            showNotification('Book added successfully!');
-            displayBooks();
-            updateDashboard();
-        });
 
         document.getElementById('bulkBookForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -870,6 +765,7 @@ Emma Davis | 12" required></textarea>
                 
                 if (parts.length !== 4) {
                     errorCount++;
+                    console.log(`Line ${index + 1}: Invalid format - "${line}"`);
                     return;
                 }
                 
@@ -877,6 +773,7 @@ Emma Davis | 12" required></textarea>
                 
                 if (!title || !author || !isbn || !category) {
                     errorCount++;
+                    console.log(`Line ${index + 1}: Missing data - "${line}"`);
                     return;
                 }
                 
@@ -907,6 +804,36 @@ Emma Davis | 12" required></textarea>
             if (errorCount > 0) {
                 showNotification(`${errorCount} books had errors and were skipped`, 'error');
             }
+        });
+
+        // Enter key support for adding categories
+        document.getElementById('newCategoryInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addCategory();
+            }
+        });
+
+        // Book management
+        document.getElementById('bookForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const book = {
+                id: Date.now(),
+                title: document.getElementById('bookTitle').value,
+                author: document.getElementById('bookAuthor').value,
+                isbn: document.getElementById('bookISBN').value,
+                category: document.getElementById('bookCategory').value,
+                available: true,
+                borrowedBy: null,
+                borrowedDate: null
+            };
+            
+            books.push(book);
+            saveData();
+            this.reset();
+            showNotification('Book added successfully!');
+            displayBooks();
+            updateDashboard();
         });
 
         function displayBooks() {
@@ -952,7 +879,8 @@ Emma Davis | 12" required></textarea>
             const student = {
                 id: Date.now(),
                 name: document.getElementById('studentName').value,
-                studentId: generateStudentId(),
+                studentId: document.getElementById('studentId').value,
+                email: document.getElementById('studentEmail').value,
                 grade: document.getElementById('studentGrade').value,
                 borrowedBooks: []
             };
@@ -964,64 +892,6 @@ Emma Davis | 12" required></textarea>
             displayStudents();
             updateDashboard();
         });
-
-        document.getElementById('bulkStudentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const bulkData = document.getElementById('bulkStudentData').value.trim();
-            if (!bulkData) {
-                showNotification('Please enter student data', 'error');
-                return;
-            }
-            
-            const lines = bulkData.split('\n').filter(line => line.trim());
-            let successCount = 0;
-            let errorCount = 0;
-            
-            lines.forEach((line, index) => {
-                const parts = line.split('|').map(part => part.trim());
-                
-                if (parts.length !== 2) {
-                    errorCount++;
-                    return;
-                }
-                
-                const [name, grade] = parts;
-                
-                if (!name || !grade) {
-                    errorCount++;
-                    return;
-                }
-                
-                const student = {
-                    id: Date.now() + index,
-                    name: name,
-                    studentId: generateStudentId(),
-                    grade: grade,
-                    borrowedBooks: []
-                };
-                
-                students.push(student);
-                successCount++;
-            });
-            
-            saveData();
-            this.reset();
-            
-            if (successCount > 0) {
-                showNotification(`${successCount} students added successfully!`);
-                displayStudents();
-                updateDashboard();
-            }
-            
-            if (errorCount > 0) {
-                showNotification(`${errorCount} students had errors and were skipped`, 'error');
-            }
-        });
-
-        function generateStudentId() {
-            return 'STU' + Date.now().toString().slice(-6);
-        }
 
         function displayStudents() {
             const studentList = document.getElementById('studentList');
@@ -1036,6 +906,7 @@ Emma Davis | 12" required></textarea>
                 <div class="card">
                     <h3>${student.name}</h3>
                     <p><strong>Student ID:</strong> ${student.studentId}</p>
+                    <p><strong>Email:</strong> ${student.email}</p>
                     <p><strong>Grade:</strong> ${student.grade}</p>
                     <p><strong>Books Borrowed:</strong> ${student.borrowedBooks.length}</p>
                     <button class="btn btn-danger" onclick="deleteStudent(${student.id})">Delete</button>
@@ -1051,157 +922,6 @@ Emma Davis | 12" required></textarea>
                 displayStudents();
                 updateDashboard();
             }
-        }
-
-        // Borrow form search functionality
-        document.getElementById('studentSearchBorrow').addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase().trim();
-            const resultsDiv = document.getElementById('studentSearchResults');
-            
-            if (!searchTerm) {
-                resultsDiv.style.display = 'none';
-                return;
-            }
-            
-            const filteredStudents = students.filter(student => 
-                student.name.toLowerCase().includes(searchTerm)
-            );
-            
-            if (filteredStudents.length === 0) {
-                resultsDiv.innerHTML = '<div class="search-result-item">No students found</div>';
-                resultsDiv.style.display = 'block';
-                return;
-            }
-            
-            resultsDiv.innerHTML = filteredStudents.map(student => `
-                <div class="search-result-item" onclick="selectStudent(${student.id})">
-                    <strong>${student.name}</strong><br>
-                    <small>ID: ${student.studentId} | Grade: ${student.grade}</small>
-                </div>
-            `).join('');
-            resultsDiv.style.display = 'block';
-        });
-
-        document.getElementById('bookSearchBorrow').addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase().trim();
-            const resultsDiv = document.getElementById('bookSearchResults');
-            
-            if (!searchTerm) {
-                resultsDiv.style.display = 'none';
-                return;
-            }
-            
-            const availableBooks = books.filter(book => 
-                book.available && 
-                (book.title.toLowerCase().includes(searchTerm) || 
-                 book.author.toLowerCase().includes(searchTerm))
-            );
-            
-            if (availableBooks.length === 0) {
-                resultsDiv.innerHTML = '<div class="search-result-item">No available books found</div>';
-                resultsDiv.style.display = 'block';
-                return;
-            }
-            
-            resultsDiv.innerHTML = availableBooks.map(book => `
-                <div class="search-result-item" onclick="selectBook(${book.id})">
-                    <strong>${book.title}</strong><br>
-                    <small>by ${book.author} | ${book.category}</small>
-                </div>
-            `).join('');
-            resultsDiv.style.display = 'block';
-        });
-
-        function selectStudent(studentId) {
-            selectedStudentForBorrow = students.find(s => s.id === studentId);
-            const selectedDiv = document.getElementById('selectedStudent');
-            const searchInput = document.getElementById('studentSearchBorrow');
-            const resultsDiv = document.getElementById('studentSearchResults');
-            
-            selectedDiv.innerHTML = `
-                <strong>Selected Student:</strong> ${selectedStudentForBorrow.name}<br>
-                <small>ID: ${selectedStudentForBorrow.studentId} | Grade: ${selectedStudentForBorrow.grade}</small>
-                <button type="button" onclick="clearStudentSelection()" style="float: right; background: #fc8181; color: white; border: none; border-radius: 4px; padding: 4px 8px; cursor: pointer;">×</button>
-            `;
-            selectedDiv.style.display = 'block';
-            resultsDiv.style.display = 'none';
-            searchInput.value = '';
-            
-            updateBorrowButton();
-        }
-
-        function selectBook(bookId) {
-            selectedBookForBorrow = books.find(b => b.id === bookId);
-            const selectedDiv = document.getElementById('selectedBook');
-            const searchInput = document.getElementById('bookSearchBorrow');
-            const resultsDiv = document.getElementById('bookSearchResults');
-            
-            selectedDiv.innerHTML = `
-                <strong>Selected Book:</strong> ${selectedBookForBorrow.title}<br>
-                <small>by ${selectedBookForBorrow.author} | ${selectedBookForBorrow.category}</small>
-                <button type="button" onclick="clearBookSelection()" style="float: right; background: #fc8181; color: white; border: none; border-radius: 4px; padding: 4px 8px; cursor: pointer;">×</button>
-            `;
-            selectedDiv.style.display = 'block';
-            resultsDiv.style.display = 'none';
-            searchInput.value = '';
-            
-            updateBorrowButton();
-        }
-
-        function clearStudentSelection() {
-            selectedStudentForBorrow = null;
-            document.getElementById('selectedStudent').style.display = 'none';
-            updateBorrowButton();
-        }
-
-        function clearBookSelection() {
-            selectedBookForBorrow = null;
-            document.getElementById('selectedBook').style.display = 'none';
-            updateBorrowButton();
-        }
-
-        function clearBorrowSelections() {
-            selectedStudentForBorrow = null;
-            selectedBookForBorrow = null;
-            document.getElementById('selectedStudent').style.display = 'none';
-            document.getElementById('selectedBook').style.display = 'none';
-            document.getElementById('studentSearchBorrow').value = '';
-            document.getElementById('bookSearchBorrow').value = '';
-            document.getElementById('studentSearchResults').style.display = 'none';
-            document.getElementById('bookSearchResults').style.display = 'none';
-            updateBorrowButton();
-        }
-
-        function updateBorrowButton() {
-            const borrowBtn = document.getElementById('borrowBtn');
-            borrowBtn.disabled = !selectedStudentForBorrow || !selectedBookForBorrow;
-        }
-
-        function borrowBook() {
-            if (!selectedStudentForBorrow || !selectedBookForBorrow) {
-                showNotification('Please select both a student and a book', 'error');
-                return;
-            }
-            
-            const borrowing = {
-                id: Date.now(),
-                studentId: selectedStudentForBorrow.id,
-                bookId: selectedBookForBorrow.id,
-                borrowDate: new Date().toISOString().split('T')[0],
-                returnDate: null
-            };
-            
-            borrowings.push(borrowing);
-            selectedBookForBorrow.available = false;
-            selectedBookForBorrow.borrowedBy = selectedStudentForBorrow.id;
-            selectedBookForBorrow.borrowedDate = borrowing.borrowDate;
-            selectedStudentForBorrow.borrowedBooks.push(selectedBookForBorrow.id);
-            
-            saveData();
-            showNotification(`Book "${selectedBookForBorrow.title}" borrowed by ${selectedStudentForBorrow.name}!`);
-            clearBorrowSelections();
-            displayBorrowings();
-            updateDashboard();
         }
 
         // Search for books to return
@@ -1258,11 +978,100 @@ Emma Davis | 12" required></textarea>
             
             saveData();
             showNotification(`Book "${book.title}" returned by ${student.name}!`);
-            displayBorrowings();
+            updateBorrowForm();
             updateDashboard();
             
             // Clear search results
             document.getElementById('returnBookSearch').value = '';
+            document.getElementById('returnSearchResults').innerHTML = '';
+        }
+
+        // Borrowing management
+        document.getElementById('borrowForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const studentId = parseInt(document.getElementById('borrowStudent').value);
+            const bookId = parseInt(document.getElementById('borrowBook').value);
+            
+            const book = books.find(b => b.id === bookId);
+            const student = students.find(s => s.id === studentId);
+            
+            if (!book.available) {
+                showNotification('This book is already borrowed!', 'error');
+                return;
+            }
+            
+            const borrowing = {
+                id: Date.now(),
+                studentId: studentId,
+                bookId: bookId,
+                borrowDate: new Date().toISOString().split('T')[0],
+                returnDate: null
+            };
+            
+            borrowings.push(borrowing);
+            book.available = false;
+            book.borrowedBy = studentId;
+            book.borrowedDate = borrowing.borrowDate;
+            student.borrowedBooks.push(bookId);
+            
+            saveData();
+            this.reset();
+            showNotification(`Book "${book.title}" borrowed by ${student.name}!`);
+            updateBorrowForm();
+            updateDashboard();
+        });
+
+        document.getElementById('returnForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const borrowingId = parseInt(document.getElementById('returnTransaction').value);
+            const borrowing = borrowings.find(b => b.id === borrowingId);
+            
+            if (borrowing) {
+                const book = books.find(b => b.id === borrowing.bookId);
+                const student = students.find(s => s.id === borrowing.studentId);
+                
+                borrowing.returnDate = new Date().toISOString().split('T')[0];
+                book.available = true;
+                book.borrowedBy = null;
+                book.borrowedDate = null;
+                student.borrowedBooks = student.borrowedBooks.filter(id => id !== borrowing.bookId);
+                
+                saveData();
+                this.reset();
+                showNotification(`Book "${book.title}" returned by ${student.name}!`);
+                updateBorrowForm();
+                updateDashboard();
+            }
+        });
+
+        function updateBorrowForm() {
+            // Update student dropdown
+            const studentSelect = document.getElementById('borrowStudent');
+            studentSelect.innerHTML = '<option value="">Select Student</option>' +
+                students.map(student => `<option value="${student.id}">${student.name} (${student.studentId})</option>`).join('');
+            
+            // Update book dropdown (only available books)
+            const bookSelect = document.getElementById('borrowBook');
+            const availableBooks = books.filter(book => book.available);
+            bookSelect.innerHTML = '<option value="">Select Book</option>' +
+                availableBooks.map(book => `<option value="${book.id}">${book.title} by ${book.author}</option>`).join('');
+            
+            // Update return dropdown
+            const returnSelect = document.getElementById('returnTransaction');
+            const activeBorrowings = borrowings.filter(b => !b.returnDate);
+            returnSelect.innerHTML = '<option value="">Select borrowed book to return</option>' +
+                activeBorrowings.map(borrowing => {
+                    const book = books.find(b => b.id === borrowing.bookId);
+                    const student = students.find(s => s.id === borrowing.studentId);
+                    return `<option value="${borrowing.id}">${book.title} - ${student.name}</option>`;
+                }).join('');
+            
+            // Display active borrowings
+            displayBorrowings();
+            
+            // Clear search results
             document.getElementById('returnSearchResults').innerHTML = '';
         }
 
@@ -1279,10 +1088,27 @@ Emma Davis | 12" required></textarea>
                         <p><strong>Borrowed by:</strong> ${student.name} (${student.studentId})</p>
                         <p><strong>Author:</strong> ${book.author}</p>
                         <p><strong>Borrow Date:</strong> ${borrowing.borrowDate}</p>
-                        <button class="btn" onclick="returnBookDirectly(${borrowing.id})">Return Book</button>
+                        <button class="btn" onclick="returnBook(${borrowing.id})">Return Book</button>
                     </div>
                 `;
             }).join('');
+        }
+
+        function returnBook(borrowingId) {
+            const borrowing = borrowings.find(b => b.id === borrowingId);
+            const book = books.find(b => b.id === borrowing.bookId);
+            const student = students.find(s => s.id === borrowing.studentId);
+            
+            borrowing.returnDate = new Date().toISOString().split('T')[0];
+            book.available = true;
+            book.borrowedBy = null;
+            book.borrowedDate = null;
+            student.borrowedBooks = student.borrowedBooks.filter(id => id !== borrowing.bookId);
+            
+            saveData();
+            showNotification(`Book "${book.title}" returned by ${student.name}!`);
+            updateBorrowForm();
+            updateDashboard();
         }
 
         function getStudentName(studentId) {
@@ -1321,17 +1147,13 @@ Emma Davis | 12" required></textarea>
         document.getElementById('studentSearch').addEventListener('input', displayStudents);
         document.getElementById('returnBookSearch').addEventListener('input', searchBooksToReturn);
 
-        // Enter key support for adding categories
-        document.getElementById('newCategoryInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                addCategory();
-            }
-        });
-
         // Initialize the app
         displayBooks();
         displayStudents();
         displayCategories();
         updateCategoryDropdown();
-        displayBorrowings();
+        updateBorrowForm();
         updateDashboard();
+    </script>
+</body>
+</html>
