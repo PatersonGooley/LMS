@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
   <title>School Library Management</title>
   <style>
     * {
@@ -468,6 +472,10 @@
      .mode-switch {
       flex-direction: column;
     }
+
+    .animate__animated.animate__backInDown {
+  --animate-duration: 0.7s;
+}
     
   </style>
 </head>
@@ -482,7 +490,7 @@
   </div>
 
   <header>
-    <h1>📚 School Library Management</h1>
+    <h1 class="animate__animated animate__backInDown">📚 School Library Management</h1>
     <p>Modern • Intuitive • Efficient</p>
   </header>
 
